@@ -1,0 +1,37 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+    {% load static %}
+
+    <!--<a href="{% url 'blog:homepage' %}">Blogs</a>-->
+
+    <div class="text-center">
+        <img src="{% static 'portfolio/welcome.jpg' %}" alt="">
+    </div>
+
+    <!-- <a href="{% static 'portfolio/dummy.pdf' %}">PDF file</a> -->
+
+    <div class="alert alert-primary" role="alert">
+        <h1 class="text-center">Portfolio Homepage</h1>
+    </div>
+
+    <div class="row">
+    {% for project in projects %}
+
+        <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ project.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description }}</p>
+                    {% if project.url %}
+                        <a href="{{ project.url }}" class="btn btn-primary">Visit Project</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        {% endfor %}
+    </div>
+
+{% endblock %}
